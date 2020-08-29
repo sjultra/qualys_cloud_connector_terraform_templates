@@ -10,23 +10,34 @@
 # username: Username to login to Qualys CloudView
 # Password: Password to login to Qualys CloudView
 # baseurl: Qualys CloudView URL
+# 
+# These variable can be set below or in the shell environment where the terraform is run.
+# export TF_VAR_project_id=""
+# export TF_VAR_username=""
+# export TF_VAR_password=""
+# export TF_VAR_baseurl=""
+#
 ######################################################################################################
 
 variable "project_id" {
   type    = string
   description = "The id of the GCP Project which you want to Onboard to Qualys CloudView."
+  default = ""
 }
 variable "username" {
   type    = string
   description = "The username for Qualys CloudView."
+  default = ""
 }
 variable "password" {
   type    = string
   description = "The password for Qualys CloudView."
+  default = ""
 }
 variable "baseurl" {
   type    = string
   description = "The API server for Qualys CloudView."
+  default = ""
 }
 
 #############################
@@ -108,7 +119,7 @@ resource "google_project_service" "enable_service_sql" {
 }
 
 #######################################################
-# Qualys API Call to create CloudView Azure Connector
+# Qualys API Call to create CloudView GCP Connector
 #######################################################
 
 resource "local_file" "authentication_key" {
